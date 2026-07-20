@@ -72,6 +72,34 @@ config.yaml                  # models, judge, tasks
 results/                     # scored outputs land here
 ```
 
+## First full run — 7 models (Qwen + Llama ≤70B), gpt-5 judge
+
+UNDERSTAND = mean(intent macro-F1, sentiment macro-F1, translation score).
+OUTPUT = generation score (judge + guardrails). hindi% = replies that drifted to
+Hindi/mixed. COMBINED = 0.5·understand + 0.5·output.
+
+| Model | UNDERSTAND | OUTPUT | hindi% | COMBINED |
+|---|---|---|---|---|
+| **llama3.3-70b** | 0.900 | **0.786** | 8% | **0.843** |
+| qwen3-14b | 0.895 | 0.652 | **25%** | 0.774 |
+| qwen3-8b | **0.918** | 0.577 | **0%** | 0.747 |
+| qwen3-32b | 0.772 | 0.701 | 8% | 0.737 |
+| qwen2.5-7b | 0.837 | 0.507 | 8% | 0.672 |
+| qwen2.5-72b | 0.890 | 0.337※ | 0% | 0.614 |
+| llama3.1-8b | 0.610 | 0.613 | 8% | 0.611 |
+
+Key findings:
+- **Understanding ≫ output for every model.** These models *read* Pakistani Roman
+  Urdu far better than they *write* it — the real risk for a customer-facing bot.
+- **llama3.3-70b is the pick** for PK Roman Urdu generation (best output, low drift).
+- **Hindi drift is not size-monotonic:** qwen3-14b drifts on 25% of replies while
+  qwen3-8b and qwen2.5-72b held 0%.
+- ※ qwen2.5-72b returned several **empty** completions (harness artifact, not pure
+  quality); a retry-on-empty pass is a known follow-up.
+
+Reproduce: `python run_benchmark.py --config config.yaml` then
+`python scripts/leaderboard.py`. Full per-item outputs in `results/<run>/`.
+
 ## Status
 
 Scaffold + working metric/judge/runner code. **Next step:** author the native

@@ -1,0 +1,72 @@
+[
+  {
+    "model": "llama3.3-70b",
+    "intent": 0.9238095238095237,
+    "sentiment": 0.8857142857142857,
+    "translation": 0.8911,
+    "understanding": 0.9,
+    "generation": 0.7864,
+    "gen_hindi_rate": 0.0833,
+    "combined": 0.843
+  },
+  {
+    "model": "qwen3-14b",
+    "intent": 0.8523809523809524,
+    "sentiment": 1.0,
+    "translation": 0.8313,
+    "understanding": 0.895,
+    "generation": 0.6521,
+    "gen_hindi_rate": 0.25,
+    "combined": 0.774
+  },
+  {
+    "model": "qwen3-8b",
+    "intent": 0.8523809523809524,
+    "sentiment": 1.0,
+    "translation": 0.902,
+    "understanding": 0.918,
+    "generation": 0.5767,
+    "gen_hindi_rate": 0.0,
+    "combined": 0.747
+  },
+  {
+    "model": "qwen3-32b",
+    "intent": 0.9238095238095237,
+    "sentiment": 0.7486772486772487,
+    "translation": 0.6421,
+    "understanding": 0.772,
+    "generation": 0.7011,
+    "gen_hindi_rate": 0.0833,
+    "combined": 0.737
+  },
+  {
+    "model": "qwen2.5-7b",
+    "intent": 0.8523809523809522,
+    "sentiment": 0.8962962962962964,
+    "translation": 0.7614,
+    "understanding": 0.837,
+    "generation": 0.5068,
+    "gen_hindi_rate": 0.0833,
+    "combined": 0.672
+  },
+  {
+    "model": "qwen2.5-72b",
+    "intent": 0.9238095238095237,
+    "sentiment": 0.8857142857142857,
+    "translation": 0.8605,
+    "understanding": 0.89,
+    "generation": 0.3374,
+    "gen_hindi_rate": 0.0,
+    "combined": 0.614
+  },
+  {
+    "model": "llama3.1-8b",
+    "intent": 0.5340136054421769,
+    "sentiment": 0.5462962962962963,
+    "translation": 0.7509,
+    "understanding": 0.61,
+    "generation": 0.613,
+    "gen_hindi_rate": 0.0833,
+    "combined": 0.611
+  }
+]
