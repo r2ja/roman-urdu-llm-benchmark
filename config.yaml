@@ -16,9 +16,10 @@ models:
 
 # ---- Judge: held OUT of the contestant pool to avoid self-preference ----
 judge:
-  id: openai/gpt-5                 # a SOTA model that reliably knows Roman Urdu
+  id: openai/gpt-4o                # reliable JSON, strong PK-Urdu vs Hindi discrimination
   temperature: 0.0
-  # If gpt-5 is unavailable on your OpenRouter plan, anthropic/claude-* also works.
+  # gpt-5 via OpenRouter needs a larger token budget (reasoning tokens) to emit
+  # parseable JSON; gpt-4o and anthropic/claude-* work out of the box.
 
 # ---- Generation defaults for contestants ----
 generation:

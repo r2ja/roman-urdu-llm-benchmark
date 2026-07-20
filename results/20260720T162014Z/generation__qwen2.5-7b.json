@@ -1,0 +1,405 @@
+{
+  "task": "generation",
+  "model": "qwen2.5-7b",
+  "type": "generation",
+  "aggregate": {
+    "final": 0.3886,
+    "judge_overall": 0.5,
+    "chrf": 13.4824,
+    "marker_penalty": 0.9932,
+    "language_consistency": 0.6943,
+    "pct_hindi_or_mixed": 0.0667,
+    "n_items": 15
+  },
+  "items": [
+    {
+      "id": "gen-001",
+      "prompt": "Apne dost ko WhatsApp par shukria kaho jisne kal mushkil waqt mein saath diya.",
+      "response": "آپ کے دوست کو وہاپر شکریہ بھیسیں جس نے کल مسئلہ وقتوں میں ساتھ دیا۔",
+      "scores": {
+        "final": 0.15,
+        "judge_overall": 0.0,
+        "judge_task_success": 0.0,
+        "judge_urdu_quality": 0.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 0.0,
+        "marker_penalty": 1.0,
+        "language_consistency": 0.0
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [],
+        "language_reason": "contains Devanagari (Hindi) script",
+        "judge_reason": "Response is inappropriately in Urdu script, not Roman Urdu.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-002",
+      "prompt": "Translate to everyday Pakistani Roman Urdu: 'Please send me the documents by tomorrow morning.'",
+      "response": " KINDA aamdaaz doo, kuch doo maanendar kalaam karta jaa. 'Kam yaar, meraa maalum karo ke main aapko kisi tara par kisi din kaam kaam karni waali paamoon tak doo.'",
+      "scores": {
+        "final": 0.2695,
+        "judge_overall": 0.0,
+        "judge_task_success": 0.0,
+        "judge_urdu_quality": 0.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 13.004895454243792,
+        "marker_penalty": 1.0,
+        "language_consistency": 1.0
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "pakistani_urdu",
+        "hindi_words": [],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "Response is incoherent and does not address the task.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-003",
+      "prompt": "Apne mulk se mohabbat ke baare mein aik chhota jumla likho.",
+      "response": "\"Mohabbat apne mulk ka ek zindagi ka nishab hain, uski baraat apni watan ki kashti par hi kar sakte hain.\"",
+      "scores": {
+        "final": 0.5013,
+        "judge_overall": 0.7,
+        "judge_task_success": 1.0,
+        "judge_urdu_quality": 1.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 27.548725284991775,
+        "marker_penalty": 1.0,
+        "language_consistency": 1.0
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "The response is overly literary and awkward, not everyday Pakistani Roman Urdu.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-004",
+      "prompt": "Mushkil waqt mein himmat dene wali aik baat kaho.",
+      "response": "Mushkil waqt mein koi baat hai jo himmat dene wali ho? Is tarah se ek baat de sakta hoon:\n\n\"Kabhi khushi, kabhi zahar, lekin khushi ka zamaana nahi hota jo zahar ka zamaana se kam ho. Isliye, apni khushi aur himmat ko sabse pehle apne dhyan mein lena chahiye. Mushkil waqt mein bhi, apni zindagi ko positiv mein dikhana aur kuchh achhe baat ke baad apne himmat ko nazar lena. Isse aapko energi aur motivation milegi zyada.\"\n\nIs baat mein zyada focus karo ki apni khushi aur himmat ko apni zindagi mein chakkar do. Mushkil waqt mein bhi, apni potential aur kuchh achhe baat ke baad apne himmat ko nazar lena zaroori hai.",
+      "scores": {
+        "final": 0.4788,
+        "judge_overall": 0.7,
+        "judge_task_success": 1.0,
+        "judge_urdu_quality": 1.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 13.699432093087532,
+        "marker_penalty": 1.0,
+        "language_consistency": 0.9823
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [
+          "zahar",
+          "khushi",
+          "zamaana",
+          "dhyan"
+        ],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "Contains Roman Hindi words and lacks natural Pakistani Urdu flow.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-005",
+      "prompt": "Kisi mehmaan ko ghar aane par khush-aamdeed kaho.",
+      "response": "Kehna chahiye:\n\n\"Khush-aamdeed aapko aagaya! Aapka shukriya ki wafa se aapne ghar aaya hain. Aapke milne ka bahut cheez hai!\"\n\nYeh baat kahne se mehmaan ko aapka khushiyon mein madad milegi aur aapko bhi itni khushi ki wafa se bahut shukriya ho jayegi.",
+      "scores": {
+        "final": 0.6011,
+        "judge_overall": 1.0,
+        "judge_task_success": 1.0,
+        "judge_urdu_quality": 1.0,
+        "judge_pakistani_register": 1.0,
+        "chrf": 34.078254530855006,
+        "marker_penalty": 1.0,
+        "language_consistency": 1.0
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "pakistani_urdu",
+        "hindi_words": [],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "The response is awkward and not natural Pakistani Roman Urdu.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-006",
+      "prompt": "Kisi ko waqt ki qadar ke baare mein choti si naseehat karo.",
+      "response": "Kisi ko waqt ki qadar ke baare mein choti si naseehat detenay kisi bina zor ki zaroorat nahi, lekin kuchh useful tips de sakta hoon:\n\n1. Kisi ko waqt ki qadar ke baare mein yeh samajhna zaroori hai ki kisi ko har din kuchh naujawan aur zindagi ka khayal rakhna chahiye.\n\n2. Kisi ko waqt ki qadar ke baare mein yeh samajhna zaroori hai ki kisi ko har din kuchh naujawan aur zindagi ka khayal rakhna chahiye.\n\n3. Kisi ko waqt ki qadar ke baare mein yeh samajhna zaroori hai ki kisi ko har din kuchh naujawan aur zindagi ka khayal rakhna chahiye.\n\n4. Kisi ko waqt ki qadar ke baare mein yeh samajhna zaroori hai ki kisi ko har din kuchh naujawan aur zindagi ka khayal rakhna chahiye.\n\n5. Kisi ko waqt ki qadar ke baare mein yeh samajhna zaroori hai ki kisi ko har din kuchh naujawan aur zindagi ka khayal rakhna chahiye.\n\n6. Kisi ko waqt ki qadar ke baare mein yeh samajhna zaroori hai ki kisi ko har din kuchh naujawan aur zindagi ka khayal rakhna chahiye.\n\n7. Kisi ko waqt ki qadar ke baare mein yeh samajhna zaroori hai ki kisi ko har din kuchh naujawan aur zindagi ka khayal rakhna chahiye.\n\n8. Kisi ko waqt ki qadar ke baare mein yeh samajhna zaroori hai ki kisi ko har din kuchh naujawan aur zindagi ka khayal rakhna chahiye.\n\n9. Kisi ko waqt ki qadar ke baare mein yeh samajhna zaroori hai ki kisi ko har din kuchh naujawan aur zindagi ka khayal rakhna chahiye.\n\n10. Kisi",
+      "scores": {
+        "final": 0.5605,
+        "judge_overall": 1.0,
+        "judge_task_success": 0.0,
+        "judge_urdu_quality": 1.0,
+        "judge_pakistani_register": 2.0,
+        "chrf": 7.001198368461743,
+        "marker_penalty": 1.0,
+        "language_consistency": 1.0
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "Response is repetitive and does not provide meaningful advice.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-007",
+      "prompt": "Subah kisi dost ko greet karo aur haal poocho.",
+      "response": "Subah zindagi! Dost ko greet karne ka tarika yeh tha:\n\n\"Subah zindagi! Aap kaise hain? Subah ke saal mein aapki tarah se kuch behtar ho jayein. Aap kis tarah se haal puch rahi hoon?\"\n\nIsse dost se achhe se connect ho sakte hain aur unki subah ka haal pucha jaa sakta hai.",
+      "scores": {
+        "final": 0.4847,
+        "judge_overall": 0.7,
+        "judge_task_success": 1.0,
+        "judge_urdu_quality": 1.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 16.495196193316726,
+        "marker_penalty": 1.0,
+        "language_consistency": 1.0
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [
+          "kaise",
+          "kis tarah se"
+        ],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "Contains Roman Hindi markers and awkward phrasing.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-008",
+      "prompt": "Dost ko halka sa mazaak karte hue chai pe bulao.",
+      "response": "Sure, I'll give it a try! 😄\n\nAapne mujhe halka sa mazaak lagana chahiya, toh main aapki taraf pe bhi halka sa jawab dena chalunga. Chai pe bulao kyun nahi? Kya aapki taraf se koi problem ho gayi hai? Ya kya aapki taraf se chai nikalne ka koi zamaana nahi hai? Kya aapko kuchh aur zaroorat hai jisse chai nikalna zyada zaroori ho gaya? Kya aapko kuchh acchi baat sunni hai jo mujhe baat karne ki koshish kariye!",
+      "scores": {
+        "final": 0.4898,
+        "judge_overall": 0.7,
+        "judge_task_success": 0.0,
+        "judge_urdu_quality": 1.0,
+        "judge_pakistani_register": 1.0,
+        "chrf": 20.746999121945915,
+        "marker_penalty": 1.0,
+        "language_consistency": 0.9872
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "Response is overly formal and doesn't invite friend humorously for chai.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-009",
+      "prompt": "Kisi ke exam se pehle hosla-afzai ki dua do.",
+      "response": "हरा-फ़र्शी की दुआ जो विद्यार्थियों के लिए होस्ला-अफ़्ज़ा की तैयारी के लिए अच्छी रह सकती है, इस प्रकार की दुआ दी जा सकती है:\n\n1. \"اِیماندِر، تو نے میرے لیے ایک نیا ریاضی کا پیٹریوٹ کر دیا ہے، میری کُل کی تیاری کو نیکل دیں۔\"\n\n2. \"اِیماندِر، میری تیاری کو نیکل دیں، میری کُل کی کیسے کریں۔\"\n\nइन दुआओं का उपयोग करके आशा करते हैं कि आप अपनी तैयारी को बेहतर बना सकते हैं और अपने परीक्षा में अच्छे परिणाम प्राप्त कर सकते हैं। यह दुआ आशा और भावना के रूप में दिखाई देती है और आपको उत्साह देती है।",
+      "scores": {
+        "final": 0.15,
+        "judge_overall": 0.0,
+        "judge_task_success": 0.0,
+        "judge_urdu_quality": 0.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 0.0,
+        "marker_penalty": 1.0,
+        "language_consistency": 0.0
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [
+          "विद्यार्थियों",
+          "होस्ला-अफ़्ज़ा",
+          "दुआओं",
+          "उपयोग",
+          "आशा",
+          "उत्साह"
+        ],
+        "language_reason": "contains Devanagari (Hindi) script",
+        "judge_reason": "Response is in Roman Hindi, not Roman Urdu.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-010",
+      "prompt": "Bachay ko aasan Pakistani Urdu mein batao ke baarish kaise hoti hai.",
+      "response": "बारिश कैसे होती है, पاکिस्तानी उर्दू में इस प्रकार बताया जा सकता है:\n\n\"बारिश कभी-कभी बादशाही की तरह आती है। जब वायुमंडल के ऊपरी वर्गों से गर्म वायु निचले वर्गों में गिरती है, तो वह गर्म वायु जल बनाती है। जल बनने के बाद, यह गिरता है और इससे बारिश आती है। यह विशेष तरीके से जब वायुमंडल के ऊपरी वर्गों से गर्म वायु निचले वर्गों में गिरती है तो होता है।\"\n\nयह बारिश के बनने का एक सरल विश्लेषण है। उर्दू में यह बहुत सरल बताया जा सकता है लेकिन यह एक आधारी ज्ञान है जो बारिश के बनने की प्रक्रिया को समझने में मदद कर सकता है।",
+      "scores": {
+        "final": 0.15,
+        "judge_overall": 0.0,
+        "judge_task_success": 0.0,
+        "judge_urdu_quality": 0.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 0.0,
+        "marker_penalty": 1.0,
+        "language_consistency": 0.0
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [
+          "बारिश",
+          "कैसे",
+          "होती",
+          "है",
+          "वायुमंडल",
+          "विशेष",
+          "वर्गों",
+          "गिरती",
+          "जल",
+          "विश्लेषण",
+          "आधारी",
+          "ज्ञान",
+          "प्रक्रिया"
+        ],
+        "language_reason": "contains Devanagari (Hindi) script",
+        "judge_reason": "Response is in Roman Hindi, not Roman Urdu.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-011",
+      "prompt": "Kisi ko kaho ke agar koi sawal ho to be-jhijhak pooch le.",
+      "response": "Koi sawal ho to mujhe be-jhijhak pooch lein. Main aapki madad karne ke liye hai. Kya aap kisi specific topik par puchne wali baat hai jo aapko zaroorat hai ya kisi problem ka solution chahiye?",
+      "scores": {
+        "final": 0.9014,
+        "judge_overall": 2.0,
+        "judge_task_success": 2.0,
+        "judge_urdu_quality": 2.0,
+        "judge_pakistani_register": 2.0,
+        "chrf": 37.98197100972241,
+        "marker_penalty": 1.0,
+        "language_consistency": 0.9444
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "The response is fully correct, fluent, and uses everyday Pakistani Roman Urdu.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-012",
+      "prompt": "Naye phone ke baare mein apni mili-juli (mixed) raye do.",
+      "response": "Naye phone ke baare mein aapki mili-juli raye ya kuch specific details nahi mil rahe hain, lekin meri taraf se kuch popular Naye Phone ki raye dekh sakte hain:\n\n1. Camera Quality: Naye phone ki kamera ko zyada pratiyogitva mein madad karta hai aur apni high-quality photos aur videos capture karne mein suvidha pradaana karta hai.\n\n2. Battery Life: Naye phone ki battery life ko bhi pratiyogitva mein madad karta hai aur user ko long-lasting performance provide karta hai.\n\n3. Design and Build: Naye phone ki design aur build quality ko bhi pratiyogitva mein madad karta hai aur user ko comfortable aur stylish experience provide karta hai.\n\n4. Performance: Naye phone ki processing speed aur multitasking capabilities ko bhi pratiyogitva mein madad karta hai aur user ko smooth experience provide karta hai.\n\n5. User Interface: Naye phone ki user interface ko bhi pratiyogitva mein madad karta hai aur user ko intuitive aur user-friendly experience provide karta hai.\n\n6. Connectivity: Naye phone ki connectivity options ko bhi pratiyogitva mein madad karta hai aur user ko fast internet aur easy connectivity options provide karta hai.\n\n7. Software Updates: Naye phone ki software updates aur security features ko bhi pratiyogitva mein madad karta hai aur user ko latest features aur protection provide karta hai.\n\n8. Price: Naye phone ki price ko bhi pratiyogitva mein madad karta hai aur user ko budget-friendly options provide karta hai.\n\n9. Customer Support: Naye phone ki customer support aur warranty options ko bhi pratiyogitva mein madad karta hai aur user ko peace of mind provide karta hai.\n\n10. Eco-Friendly Features: Naye phone ki eco-friendly features ko bhi pratiyogitva mein madad karta hai aur user ko sustainable options provide karta hai.\n\nAapke Naye Phone ki specific raye ya review banane ke liye, aapko phone ka model name ya brand name de sakte hain.",
+      "scores": {
+        "final": 0.4711,
+        "judge_overall": 0.7,
+        "judge_task_success": 1.0,
+        "judge_urdu_quality": 1.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 7.863702449766882,
+        "marker_penalty": 1.0,
+        "language_consistency": 0.9934
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [
+          "pratiyogitva",
+          "suvidha",
+          "pradaana"
+        ],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "Response contains Roman Hindi words and lacks specific mixed opinion on a new phone.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-013",
+      "prompt": "Apne boss ko message karo ke tabiyat kharab hone ki wajah se aaj chutti chahiye.",
+      "response": "Sure, here's a message you could send to your boss requesting a leave due to poor health:\n\n\"Subject: Request for Leave Due to Health Issues\n\nDear [Boss's Name],\n\nI hope this message finds you well. Unfortunately, I am not feeling well today and believe it would be best for me to take the day off to rest and recover. I would appreciate it if you could grant me a leave of absence for today.\n\nI will ensure that all my pending tasks are taken care of and will be back to work tomorrow ready to resume my duties.\n\nThank you for understanding.\n\nBest regards,\n[Your Name]\"\n\nFeel free to adjust the message as per your comfort and the specific situation.",
+      "scores": {
+        "final": 0.2319,
+        "judge_overall": 0.0,
+        "judge_task_success": 0.0,
+        "judge_urdu_quality": 0.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 11.433669436782305,
+        "marker_penalty": 1.0,
+        "language_consistency": 0.6475
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "The response is in English, not Roman Urdu.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-014",
+      "prompt": "Kisi ko rasta batao: yahan se bank kaise pohanchna hai (do mor).",
+      "response": "कैसे बैंक से पहुंच जाएं? यह दो मार्ग दिए गए हैं:\n\n1. पैसा दिलवाना: यहाँ आप अपना पैसा दिलवा सकते हैं। इसके लिए आपको एक पैसा दिलवाने का संचालक चुनना होगा जो आपके नजदीक हो। यह संचालक आपके नाम पर एक खाता खोलेगा और आपको उसे पैसा भेज सकते हैं। बैंक के ऑनलाइन बैंकिंग सिस्टम का उपयोग करके या बैंक की कार्यालय में जाकर भी पैसा दिलवा सकते हैं।\n\n2. ऑनलाइन बैंकिंग: अब बहुत सारे बैंक ऑनलाइन बैंकिंग सेवाएं प्रदान करते हैं। आप अपने बैंक के ऑफिस या ऑनलाइन वेबसाइट पर जा सकते हैं और अपने खाते से पैसा इस्तेमाल करके दूसरे खाते में पहुंचा सकते हैं। यह ए",
+      "scores": {
+        "final": 0.15,
+        "judge_overall": 0.0,
+        "judge_task_success": 0.0,
+        "judge_urdu_quality": 0.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 0.0,
+        "marker_penalty": 1.0,
+        "language_consistency": 0.0
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "unknown",
+        "hindi_words": [
+          "कैसे",
+          "मार्ग",
+          "पैसा",
+          "संचालक",
+          "खाता",
+          "ऑनलाइन",
+          "सेवाएं",
+          "प्रदान"
+        ],
+        "language_reason": "contains Devanagari (Hindi) script",
+        "judge_reason": "Response is in Roman Hindi and does not address the task of giving directions.",
+        "error": null
+      }
+    },
+    {
+      "id": "gen-015",
+      "prompt": "Kisi naraz dost ko manao.",
+      "response": "Aapne koi specific context ya example nahi diya, lekin kuch common meanings of this phrase in Urdu/Punjabi can be:\n\n1. \"I consider you a friend even in difficult times.\"\n2. \"I treat you as a friend, no matter what.\"\n\nYeh phrase kisi ko aapki dosti ko value deti hai, jaise woh kisi bhi samay mein aapki dosti ke liye madad karta hai ya aapki dosti ko respect karta hai.\n\nAgar aap kisi specific context mein use karna chahte hain ya aapke liye koi aur form of this phrase chahiye, to please provide more details.",
+      "scores": {
+        "final": 0.2392,
+        "judge_overall": 0.0,
+        "judge_task_success": 0.0,
+        "judge_urdu_quality": 0.0,
+        "judge_pakistani_register": 0.0,
+        "chrf": 12.381928628414725,
+        "marker_penalty": 0.8974,
+        "language_consistency": 0.8602
+      },
+      "meta": {
+        "model": "qwen2.5-7b",
+        "variety": "hindi",
+        "hindi_words": [
+          "samay"
+        ],
+        "language_reason": "consistent roman urdu",
+        "judge_reason": "Response is off-topic and includes Roman Hindi.",
+        "error": null
+      }
+    }
+  ]
+}

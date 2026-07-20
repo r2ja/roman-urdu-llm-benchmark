@@ -1,13 +1,18 @@
-// Native Pakistani Roman Urdu GENERATION seed set. YOU author this.
-// One JSON object per line. Fields:
-//   id        : unique string/int
-//   prompt    : the instruction/question given to the model (in Roman Urdu or English)
-//   reference : (optional) a native Pakistani Roman Urdu gold answer for chrF + judge anchoring
-//   system    : (optional) a system prompt to force Roman Urdu output
-//   tags      : (optional) list, e.g. ["colloquial","translation","qa"]
-// Lines starting with // are ignored. Replace these 5 examples with your real set.
-{"id": "gen-001", "prompt": "Apne dost ko WhatsApp par shukria kaho ke us ne kal madad ki.", "reference": "Yaar bohat bohat shukria, kal jo tune meri madad ki us ka ehsan kabhi nahi bhoolunga.", "system": "Sirf everyday Pakistani Roman Urdu mein jawab do. Hindi ya literary Urdu use mat karo.", "tags": ["colloquial", "generation"]}
-{"id": "gen-002", "prompt": "Translate to everyday Pakistani Roman Urdu: 'I will reach the office in ten minutes.'", "reference": "Main das minute mein office pohanch jaunga.", "system": "Reply only in Pakistani Roman Urdu.", "tags": ["translation"]}
-{"id": "gen-003", "prompt": "Kisi ko halka sa mazaak karte hue chai pe bulao.", "reference": "Oye sunn, chai peene aa ja, tere bina to chai bhi pheeki lagti hai.", "tags": ["colloquial", "humor"]}
-{"id": "gen-004", "prompt": "Ek chhoti si dua likho jab koi safar par ja raha ho.", "reference": "Allah tumhein khair se le jaye aur khair se wapas laye, safar asaan ho. Ameen.", "tags": ["religious-register"]}
-{"id": "gen-005", "prompt": "Explain in simple Pakistani Roman Urdu why the sky looks blue.", "reference": "Aasman neela is liye lagta hai kyunke suraj ki roshni jab hawa se guzarti hai to neeli roshni sab se zyada bikhar jaati hai, is liye humein aasman neela dikhta hai.", "tags": ["explanation", "qa"]}
+// Native Pakistani Roman Urdu GENERATION seed set. Author/verify these (you = ground truth).
+// Fields: id, prompt, reference (native PK gold), system (optional), bait (Hindi word this item baits, optional), tags.
+// `bait` = the Hindi word a drifting model would wrongly use; the PK reference uses the Urdu form instead.
+{"id": "gen-001", "prompt": "Apne dost ko WhatsApp par shukria kaho jisne kal mushkil waqt mein saath diya.", "reference": "Yaar tera bohat bohat shukria, jab main mushkil mein tha to sirf tu hi mere saath khara tha.", "system": "Sirf everyday Pakistani Roman Urdu mein jawab do. Hindi ya kitabi Urdu use mat karo.", "bait": "dhanyavad", "tags": ["colloquial", "thanks"]}
+{"id": "gen-002", "prompt": "Translate to everyday Pakistani Roman Urdu: 'Please send me the documents by tomorrow morning.'", "reference": "Meherbani kar ke kal subah tak mujhe documents bhej dena.", "system": "Reply only in Pakistani Roman Urdu.", "bait": "kripya", "tags": ["translation", "please"]}
+{"id": "gen-003", "prompt": "Apne mulk se mohabbat ke baare mein aik chhota jumla likho.", "reference": "Mujhe apne mulk Pakistan se be-inteha mohabbat hai, yehi meri pehchaan hai.", "bait": "desh", "tags": ["country", "generation"]}
+{"id": "gen-004", "prompt": "Mushkil waqt mein himmat dene wali aik baat kaho.", "reference": "Himmat mat haar, Allah un logon ke saath hai jo sabar karte hain.", "bait": "ishwar", "tags": ["religious-register", "god"]}
+{"id": "gen-005", "prompt": "Kisi mehmaan ko ghar aane par khush-aamdeed kaho.", "reference": "Aayiye aayiye, khush aamdeed! Aap ka tashreef laana bari khushi ki baat hai.", "bait": "swagat", "tags": ["welcome", "greeting"]}
+{"id": "gen-006", "prompt": "Kisi ko waqt ki qadar ke baare mein choti si naseehat karo.", "reference": "Waqt bohat qeemti hai, ek dafa guzar jaye to wapas nahi aata, is liye is ka sahi istemaal karo.", "bait": "samay", "tags": ["advice", "time"]}
+{"id": "gen-007", "prompt": "Subah kisi dost ko greet karo aur haal poocho.", "reference": "Assalam o alaikum! Subah bakhair, sunao kya haal hai tumhara?", "bait": "namaste", "tags": ["greeting"]}
+{"id": "gen-008", "prompt": "Dost ko halka sa mazaak karte hue chai pe bulao.", "reference": "Oye kahan ghayab hai, chai thandi ho rahi hai, foran aa ja warna teri hisse ki bhi main pee jaunga.", "tags": ["colloquial", "humor"]}
+{"id": "gen-009", "prompt": "Kisi ke exam se pehle hosla-afzai ki dua do.", "reference": "Allah tumhein kamyabi de, mehnat rang laye, InshaAllah paper bohat acha hoga.", "tags": ["religious-register", "dua"]}
+{"id": "gen-010", "prompt": "Bachay ko aasan Pakistani Urdu mein batao ke baarish kaise hoti hai.", "reference": "Suraj ki garmi se pani bhaap ban kar upar chala jata hai, wahan thanda ho kar baadal banta hai, phir wohi pani baarish ban kar niche aata hai.", "tags": ["explanation", "qa"]}
+{"id": "gen-011", "prompt": "Kisi ko kaho ke agar koi sawal ho to be-jhijhak pooch le.", "reference": "Agar koi sawal ho to be-jhijhak pooch lo, main jawab dene ki poori koshish karunga.", "bait": "prashn", "tags": ["qa", "question-word"]}
+{"id": "gen-012", "prompt": "Naye phone ke baare mein apni mili-juli (mixed) raye do.", "reference": "Phone dekhne mein to zabardast hai, lekin battery thodi jaldi khatam ho jaati hai, baqi sab theek hai.", "tags": ["opinion", "generation"]}
+{"id": "gen-013", "prompt": "Apne boss ko message karo ke tabiyat kharab hone ki wajah se aaj chutti chahiye.", "reference": "Assalam o alaikum sir, tabiyat theek nahi hai is liye aaj main office nahi aa sakunga, chutti ki darkhwast hai. Shukria.", "tags": ["semi-formal", "workplace"]}
+{"id": "gen-014", "prompt": "Kisi ko rasta batao: yahan se bank kaise pohanchna hai (do mor).", "reference": "Yahan se seedha jao, phir doosre chowk se dayen (right) mur jao, bank wahin saamne hi hai.", "tags": ["directions"]}
+{"id": "gen-015", "prompt": "Kisi naraz dost ko manao.", "reference": "Yaar naraz mat ho, mujh se galti ho gayi, chal gale mil aur muskura de, chai meri taraf se.", "tags": ["colloquial", "emotion"]}

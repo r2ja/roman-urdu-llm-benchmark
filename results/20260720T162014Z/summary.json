@@ -1,0 +1,16 @@
+[
+  {
+    "task": "generation",
+    "model": "qwen2.5-7b",
+    "type": "generation",
+    "aggregate": {
+      "final": 0.3886,
+      "judge_overall": 0.5,
+      "chrf": 13.4824,
+      "marker_penalty": 0.9932,
+      "language_consistency": 0.6943,
+      "pct_hindi_or_mixed": 0.0667,
+      "n_items": 15
+    }
+  }
+]
