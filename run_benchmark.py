@@ -114,20 +114,29 @@ def run(config_path: str, only_task: str | None, only_models: list[str] | None) 
         for m in models:
             mid, alias = m["id"], m.get("alias", m["id"])
             print(f"→ task={task['name']} model={alias}")
-            if task["type"] == "classification":
-                items, agg = R.run_classification_task(task, mid, alias, client, gen_cfg)
-            elif task["type"] == "translation":
-                items = R.run_translation_task(task, mid, alias, client, judge, gen_cfg)
-                agg = R.aggregate_translation(items)
-            else:
-                items = R.run_generation_task(task, mid, alias, client, judge, lex, gen_cfg)
-                agg = R.aggregate_generation(items)
+            try:
+                if task["type"] == "classification":
+                    items, agg = R.run_classification_task(task, mid, alias, client, gen_cfg)
+                elif task["type"] == "translation":
+                    items = R.run_translation_task(task, mid, alias, client, judge, gen_cfg)
+                    agg = R.aggregate_translation(items)
+                else:
+                    items = R.run_generation_task(task, mid, alias, client, judge, lex, gen_cfg)
+                    agg = R.aggregate_generation(items)
+            except Exception as e:  # one model/task must not abort the matrix
+                print(f"   ERROR: {type(e).__name__}: {e}")
+                summary.append({"task": task["name"], "model": alias,
+                                "type": task["type"], "aggregate": {"error": str(e)}})
+                continue
             rec = {"task": task["name"], "model": alias, "type": task["type"], "aggregate": agg}
             summary.append(rec)
             (out_dir / f"{task['name']}__{alias}.json").write_text(
                 json.dumps({**rec, "items": [i.__dict__ for i in items]},
                            ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"   {json.dumps(agg, ensure_ascii=False)}")
+            # incremental summary so a mid-run crash still leaves usable data
+            (out_dir / "summary.json").write_text(
+                json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
 
     (out_dir / "summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")

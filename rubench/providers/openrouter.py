@@ -86,15 +86,20 @@ class OpenRouterClient:
                 )
                 if resp.status_code == 200:
                     data = resp.json()
-                    choice = data["choices"][0]["message"]["content"]
-                    usage = data.get("usage", {}) or {}
-                    return ChatResult(
-                        text=choice or "",
-                        model=model,
-                        raw=data,
-                        prompt_tokens=usage.get("prompt_tokens", 0),
-                        completion_tokens=usage.get("completion_tokens", 0),
-                    )
+                    choices = data.get("choices")
+                    if choices:
+                        msg = choices[0].get("message", {}) or {}
+                        usage = data.get("usage", {}) or {}
+                        return ChatResult(
+                            text=msg.get("content") or "",
+                            model=model,
+                            raw=data,
+                            prompt_tokens=usage.get("prompt_tokens", 0),
+                            completion_tokens=usage.get("completion_tokens", 0),
+                        )
+                    # OpenRouter sometimes returns HTTP 200 with an error body
+                    # (rate limit, upstream hiccup) and no choices — treat as retryable.
+                    last_err = f"200 without choices: {str(data.get('error') or data)[:200]}"
                 # 429 / 5xx are retryable; 4xx (except 429) are not.
                 if resp.status_code not in (429, 500, 502, 503, 504):
                     return ChatResult(
