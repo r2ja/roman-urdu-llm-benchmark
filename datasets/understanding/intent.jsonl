@@ -1,16 +1,63 @@
-// UNDERSTANDING — intent classification of Pakistani Roman Urdu customer messages.
-// Deterministic macro-F1. Labels: balance_inquiry, complaint, refund_request,
-// order_status, technical_support, account_security, human_agent.
-// Tests: does the model UNDERSTAND real customer Roman Urdu? Verify/expand these.
-{"id": "int-01", "prompt": "Customer ka message: 'Mera mobile balance kitna reh gaya hai?'", "label": "balance_inquiry"}
-{"id": "int-02", "prompt": "Customer ka message: 'Teen din se internet nahi chal raha, service bilkul bekaar hai.'", "label": "complaint"}
-{"id": "int-03", "prompt": "Customer ka message: 'Mujhe apna order cancel kar ke paisay wapas chahiye.'", "label": "refund_request"}
-{"id": "int-04", "prompt": "Customer ka message: 'Mera parcel abhi tak deliver nahi hua, kahan pohancha?'", "label": "order_status"}
-{"id": "int-05", "prompt": "Customer ka message: 'App bar bar crash ho rahi hai, login hi nahi ho raha.'", "label": "technical_support"}
-{"id": "int-06", "prompt": "Customer ka message: 'Mere account mein koi aur login kar raha hai, foran block karein!'", "label": "account_security"}
-{"id": "int-07", "prompt": "Customer ka message: 'Ye bot kaam ka nahi, mujhe kisi asli banday se baat karni hai.'", "label": "human_agent"}
-{"id": "int-08", "prompt": "Customer ka message: 'Is mahine bill bohat zyada aaya hai, ye galti kaise hui?'", "label": "complaint"}
-{"id": "int-09", "prompt": "Customer ka message: 'Meri last recharge ke baad se points show nahi ho rahe, balance check kar dein.'", "label": "balance_inquiry"}
-{"id": "int-10", "prompt": "Customer ka message: 'Payment ho gayi lekin order confirm nahi hua, refund chahiye.'", "label": "refund_request"}
-{"id": "int-11", "prompt": "Customer ka message: 'OTP nahi aa raha message par, kaise verify karun?'", "label": "technical_support"}
-{"id": "int-12", "prompt": "Customer ka message: 'Mujhe shak hai kisi ne mera card use kiya hai, transactions rok dein.'", "label": "account_security"}
+// UNDERSTANDING — intent classification (macro-F1). Seed items native; rest GPT-5-generated (validate).
+{"id": "int-001", "prompt": "Customer ka message: 'Mera mobile balance kitna reh gaya hai?'", "label": "balance_inquiry", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-002", "prompt": "Customer ka message: 'Teen din se internet nahi chal raha, service bilkul bekaar hai.'", "label": "complaint", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-003", "prompt": "Customer ka message: 'Mujhe apna order cancel kar ke paisay wapas chahiye.'", "label": "refund_request", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-004", "prompt": "Customer ka message: 'Mera parcel abhi tak deliver nahi hua, kahan pohancha?'", "label": "order_status", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-005", "prompt": "Customer ka message: 'App bar bar crash ho rahi hai, login hi nahi ho raha.'", "label": "technical_support", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-006", "prompt": "Customer ka message: 'Mere account mein koi aur login kar raha hai, foran block karein!'", "label": "account_security", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-007", "prompt": "Customer ka message: 'Ye bot kaam ka nahi, mujhe kisi asli banday se baat karni hai.'", "label": "human_agent", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-008", "prompt": "Customer ka message: 'Is mahine bill bohat zyada aaya hai, ye galti kaise hui?'", "label": "complaint", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-009", "prompt": "Customer ka message: 'Meri last recharge ke baad se points show nahi ho rahe, balance check kar dein.'", "label": "balance_inquiry", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-010", "prompt": "Customer ka message: 'Payment ho gayi lekin order confirm nahi hua, refund chahiye.'", "label": "refund_request", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-011", "prompt": "Customer ka message: 'OTP nahi aa raha message par, kaise verify karun?'", "label": "technical_support", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-012", "prompt": "Customer ka message: 'Mujhe shak hai kisi ne mera card use kiya hai, transactions rok dein.'", "label": "account_security", "provenance": "native_seed", "status": "candidate"}
+{"id": "int-013", "prompt": "Customer ka message: 'mera account balance check karwana hai, last transactions bhi bata dein'", "label": "balance_inquiry", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-014", "prompt": "Customer ka message: 'app bar bar crash ho rahi hai, bill payment do dafa fail hua hai'", "label": "complaint", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-015", "prompt": "Customer ka message: 'ATM ne cash deduct kar liya lekin paisay nahi niklay, refund chahiye'", "label": "refund_request", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-016", "prompt": "Customer ka message: 'mera new debit card ka status kya hai, delivery kab hogi?'", "label": "order_status", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-017", "prompt": "Customer ka message: 'mobile app login pe error 500 aa raha hai, reset kaise karun?'", "label": "technical_support", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-018", "prompt": "Customer ka message: 'mujhe unknown OTP aa rahe hain, please meri account security check karein aur card block kar dein'", "label": "account_security", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-019", "prompt": "Customer ka message: 'mujhe human agent se baat karni hai, chatbot se masla solve nahi ho raha'", "label": "human_agent", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-020", "prompt": "Customer ka message: 'mini statement chahiye, available balance aur hold amount bata dein'", "label": "balance_inquiry", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-021", "prompt": "Customer ka message: 'branch pe staff ne token ke baad bhi delay kiya, service bohat slow thi'", "label": "complaint", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-022", "prompt": "Customer ka message: 'online transfer duplicate ho gaya, ek transaction ko reverse kar dein'", "label": "refund_request", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-023", "prompt": "Customer ka message: 'IBAN verify nahi ho raha, beneficiary add karte hue error aata hai'", "label": "technical_support", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-024", "prompt": "Customer ka message: 'salary credit hui ya nahi, meri current balance confirm kar dein'", "label": "balance_inquiry", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-025", "prompt": "Customer ka message: 'mera balance kitna reh gaya hai? number 03XXXXXXXXX par check kar den'", "label": "balance_inquiry", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-026", "prompt": "Customer ka message: 'internet MBs aur minutes ka remaining bata dein, mera weekly super offer active hai'", "label": "balance_inquiry", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-027", "prompt": "Customer ka message: 'aapka network gulshan block 7 me poora din down rehta hai, calls drop hoti hain, please fix'", "label": "complaint", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-028", "prompt": "Customer ka message: 'kal se extra charges lag rahe hain without using net, mere pass auto package bhi off hai'", "label": "complaint", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-029", "prompt": "Customer ka message: 'mujh se do dafa balance deduct hua jab maine 1000 ka card dial kiya, refund chahiye'", "label": "refund_request", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-030", "prompt": "Customer ka message: 'galti se wrong bundle activate ho gaya daily social, main cancel karke refund chahta hun'", "label": "refund_request", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-031", "prompt": "Customer ka message: 'new sim online order ki thi kal, abhi tak delivery ka status kya hai? order id 45XX'", "label": "order_status", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-032", "prompt": "Customer ka message: 'number port request di thi jazz se zong pe, porting status update kar dein kab active hoga'", "label": "order_status", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-033", "prompt": "Customer ka message: '4G on hai lekin sirf E dikhata hai, internet bilkul nahi chal raha, settings bhej dein'", "label": "technical_support", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-034", "prompt": "Customer ka message: 'sim 2 me network signal zero aata hai, mera handset dual sim hai, troubleshooting guide chahiye'", "label": "technical_support", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-035", "prompt": "Customer ka message: 'mera phone chori ho gaya, sim 03XXXXXXXXX ko turant block karein aur duplicate sim ka process bata dein'", "label": "account_security", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-036", "prompt": "Customer ka message: 'please mujhe human agent se connect kar do, meri complaint detail me discuss karni hai'", "label": "human_agent", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-037", "prompt": "Customer ka message: 'mera order# 78421 kab deliver hoga? tracking link open nahi ho raha'", "label": "order_status", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-038", "prompt": "Customer ka message: 'kal flash sale mein jo shoes order kiye thay, abhi tak status processing hai, dispatch kab hoga?'", "label": "order_status", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-039", "prompt": "Customer ka message: 'rider ne call kiya tha phir chup, parcel kahan pohcha hai?'", "label": "order_status", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-040", "prompt": "Customer ka message: 'jo tshirt ayi hai size galat aur stitching bhi kharab, ye kaisi service hai?'", "label": "complaint", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-041", "prompt": "Customer ka message: 'customer support pe baar baar hold, kisi ka response nahi, bohat poor experience'", "label": "complaint", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-042", "prompt": "Customer ka message: 'maine order cancel kiya tha, payment card se gai thi, refund kab milega?'", "label": "refund_request", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-043", "prompt": "Customer ka message: 'defective blender receive hua, replacement nahi chahiye, please full refund process kar dein'", "label": "refund_request", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-044", "prompt": "Customer ka message: 'meri wallet balance kitni hai app ke andar? last cashback reflect nahi ho raha'", "label": "balance_inquiry", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-045", "prompt": "Customer ka message: 'gift card redeem kiya tha, remaining balance check karna hai'", "label": "balance_inquiry", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-046", "prompt": "Customer ka message: 'app checkout par error 502 aa raha hai, add to cart theek hai par payment nahi ja rahi'", "label": "technical_support", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-047", "prompt": "Customer ka message: 'mujhe unknown login alert aya hai, please account secure karo aur password reset link bhejo'", "label": "account_security", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-048", "prompt": "Customer ka message: 'mujhe banda chahiye baat karne ke liye, live agent connect karo please'", "label": "human_agent", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-049", "prompt": "Customer ka message: 'wallet balance check karna hai, abhi kitna bacha hai?'", "label": "balance_inquiry", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-050", "prompt": "Customer ka message: 'kal ride ke baad cashback aya tha ya nahi? mera wallet balance update nahi ho raha.'", "label": "balance_inquiry", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-051", "prompt": "Customer ka message: 'driver ne AC band rakha aur badtameezi ki, please action lo.'", "label": "complaint", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-052", "prompt": "Customer ka message: 'ride accept ki phir 20 min baad cancel kar di, upar se late charges bhi lag gaye, ye kya scene hai?'", "label": "complaint", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-053", "prompt": "Customer ka message: 'is ride pe galti se double charge lag gaya, ek amount refund kar dein.'", "label": "refund_request", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-054", "prompt": "Customer ka message: 'driver no-show tha lekin cancellation fee kaat li, refund chahiye.'", "label": "refund_request", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-055", "prompt": "Customer ka message: 'mera driver kahan hai? app pe location freeze hai, ETA 5 min se change nahi ho rahi.'", "label": "order_status", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-056", "prompt": "Customer ka message: 'ride book ki hai airport ke liye, driver ka number aur arrival time confirm kara dein.'", "label": "order_status", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-057", "prompt": "Customer ka message: 'app open karte hi crash ho jati hai Samsung A12 pe, help karo.'", "label": "technical_support", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-058", "prompt": "Customer ka message: 'map meri pin galat pick kar raha hai, location set nahi ho rahi.'", "label": "technical_support", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-059", "prompt": "Customer ka message: 'mujhe unknown devices se OTP aa rahe hain, lagta account compromise ho gaya, please secure karo.'", "label": "account_security", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-060", "prompt": "Customer ka message: 'mujhe kisi human agent se baat karni hai, bot samajh nahi raha mera masla.'", "label": "human_agent", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-061", "prompt": "Customer ka message: 'mera order #456781 ka status kya hai? rider abhi tak nahi pohcha, ETA bata dein'", "label": "order_status", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "int-062", "prompt": "Customer ka message: 'burger thanda aur fries soggy aaye hain, yeh kya service hai?'", "label": "complaint", "provenance": "gpt5_generated", "status": "candidate"}

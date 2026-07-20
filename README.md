@@ -72,6 +72,23 @@ config.yaml                  # models, judge, tasks
 results/                     # scored outputs land here
 ```
 
+## Data status (important)
+
+Two tiers, and only one is gold:
+
+| Tier | Size | Status |
+|---|---|---|
+| **native_seed** | ~44 items | hand-authored, still `candidate` |
+| **gpt5_generated** | ~180 items | GPT-5-authored scale, `candidate` |
+| **Total** | **224 items** | **all `candidate` — NOT yet human-vetted** |
+
+**No item is `vetted` until ≥3 independent Pakistani annotators agree on it** (see
+[`docs/VETTING.md`](docs/VETTING.md)). Workflow: `generate_data.py` →
+`make_vetting_sheet.py` (blind annotator workbooks, with auto-Hindi-flagging) →
+human review → `merge_reviews.py` (majority promotion + Fleiss κ) →
+`run_benchmark.py --vetted-only`. The results below are a **pilot on the small
+candidate set** — treat rankings as directional, not final, until vetting is done.
+
 ## First full run — 7 models (Qwen + Llama ≤70B), gpt-5 judge
 
 UNDERSTAND = mean(intent macro-F1, sentiment macro-F1, translation score).

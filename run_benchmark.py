@@ -85,7 +85,8 @@ def selftest() -> int:
 # --------------------------------------------------------------------------- #
 # Live run
 # --------------------------------------------------------------------------- #
-def run(config_path: str, only_task: str | None, only_models: list[str] | None) -> int:
+def run(config_path: str, only_task: str | None, only_models: list[str] | None,
+        vetted_only: bool = False) -> int:
     from rubench.providers import OpenRouterClient
     from rubench.judge import Judge
     from rubench import runner as R
@@ -104,6 +105,23 @@ def run(config_path: str, only_task: str | None, only_models: list[str] | None) 
     tasks = cfg["tasks"]
     if only_task:
         tasks = [t for t in tasks if t["name"] == only_task]
+
+    if vetted_only:
+        # Official run: use ONLY human-vetted gold (produced by merge_reviews.py).
+        vdir = ROOT / "datasets" / "vetted"
+        redirected = []
+        for t in tasks:
+            vpath = vdir / Path(t["dataset"]).name
+            if not vpath.exists() or not vpath.read_text(encoding="utf-8").strip().count("\n"):
+                print(f"  ! skipping {t['name']}: no vetted data at {vpath} "
+                      f"(run human vetting + merge_reviews.py first)")
+                continue
+            redirected.append({**t, "dataset": str(vpath.relative_to(ROOT))})
+        tasks = redirected
+        if not tasks:
+            print("No vetted datasets found. Nothing to run. See docs/VETTING.md.")
+            return 1
+        print(f"[vetted-only] running on human-approved gold ({len(tasks)} task(s)).")
 
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out_dir = ROOT / "results" / ts
@@ -200,6 +218,8 @@ def main() -> int:
     ap.add_argument("--config", default="config.yaml")
     ap.add_argument("--task", default=None, help="run only this task name")
     ap.add_argument("--models", default=None, help="comma-separated model aliases to run")
+    ap.add_argument("--vetted-only", action="store_true",
+                    help="official run: use only human-vetted gold from datasets/vetted/")
     args = ap.parse_args()
 
     if args.selftest:
@@ -207,7 +227,7 @@ def main() -> int:
     if args.validate_judge:
         return validate_judge(args.config)
     models = args.models.split(",") if args.models else None
-    return run(args.config, args.task, models)
+    return run(args.config, args.task, models, vetted_only=args.vetted_only)
 
 
 if __name__ == "__main__":

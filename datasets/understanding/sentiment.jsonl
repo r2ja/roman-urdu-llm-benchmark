@@ -1,12 +1,51 @@
-// UNDERSTANDING — sentiment of Pakistani Roman Urdu customer feedback.
-// Deterministic macro-F1. Labels: positive, negative, neutral.
-{"id": "sent-01", "prompt": "Feedback ka sentiment batao: 'Aap ki service se bohat khush hun, masla foran hal ho gaya.'", "label": "positive"}
-{"id": "sent-02", "prompt": "Feedback ka sentiment batao: 'Bilkul faltu service, mera paisa bhi barbaad hua aur waqt bhi.'", "label": "negative"}
-{"id": "sent-03", "prompt": "Feedback ka sentiment batao: 'Order mil gaya hai, packing normal thi.'", "label": "neutral"}
-{"id": "sent-04", "prompt": "Feedback ka sentiment batao: 'Delivery bhi late aur support ne bhi seedha jawab nahi diya.'", "label": "negative"}
-{"id": "sent-05", "prompt": "Feedback ka sentiment batao: 'Staff bohat cooperative tha, mashallah kaam jaldi ho gaya.'", "label": "positive"}
-{"id": "sent-06", "prompt": "Feedback ka sentiment batao: 'Meeting kal subah 10 baje reschedule ho gayi hai.'", "label": "neutral"}
-{"id": "sent-07", "prompt": "Feedback ka sentiment batao: 'Paisay kat gaye lekin transaction fail ho gayi, sakht pareshani hui.'", "label": "negative"}
-{"id": "sent-08", "prompt": "Feedback ka sentiment batao: 'Is dafa experience kaafi behtar raha, shukria.'", "label": "positive"}
-{"id": "sent-09", "prompt": "Feedback ka sentiment batao: 'Application submit kar di hai, abhi tak koi update nahi mila.'", "label": "neutral"}
-{"id": "sent-10", "prompt": "Feedback ka sentiment batao: 'Refund time pe mil gaya, bohat acha laga.'", "label": "positive"}
+// UNDERSTANDING — sentiment (macro-F1). Seed items native; rest GPT-5-generated (validate).
+{"id": "sent-001", "prompt": "Feedback ka sentiment batao: 'Aap ki service se bohat khush hun, masla foran hal ho gaya.'", "label": "positive", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-002", "prompt": "Feedback ka sentiment batao: 'Bilkul faltu service, mera paisa bhi barbaad hua aur waqt bhi.'", "label": "negative", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-003", "prompt": "Feedback ka sentiment batao: 'Order mil gaya hai, packing normal thi.'", "label": "neutral", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-004", "prompt": "Feedback ka sentiment batao: 'Delivery bhi late aur support ne bhi seedha jawab nahi diya.'", "label": "negative", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-005", "prompt": "Feedback ka sentiment batao: 'Staff bohat cooperative tha, mashallah kaam jaldi ho gaya.'", "label": "positive", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-006", "prompt": "Feedback ka sentiment batao: 'Meeting kal subah 10 baje reschedule ho gayi hai.'", "label": "neutral", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-007", "prompt": "Feedback ka sentiment batao: 'Paisay kat gaye lekin transaction fail ho gayi, sakht pareshani hui.'", "label": "negative", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-008", "prompt": "Feedback ka sentiment batao: 'Is dafa experience kaafi behtar raha, shukria.'", "label": "positive", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-009", "prompt": "Feedback ka sentiment batao: 'Application submit kar di hai, abhi tak koi update nahi mila.'", "label": "neutral", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-010", "prompt": "Feedback ka sentiment batao: 'Refund time pe mil gaya, bohat acha laga.'", "label": "positive", "provenance": "native_seed", "status": "candidate"}
+{"id": "sent-011", "prompt": "Feedback ka sentiment batao: 'Delivery time pe aayi, packaging neat thi, product bilkul jaisa describe tha.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-012", "prompt": "Feedback ka sentiment batao: 'Bank app bohat smooth hai, biometric login fast, bills pay karna asaan.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-013", "prompt": "Feedback ka sentiment batao: 'Rider professional tha, car clean, AC theek, 5 star experience.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-014", "prompt": "Feedback ka sentiment batao: 'Camera quality kamaal ki, night mode bhi acha, battery backup theek thaak.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-015", "prompt": "Feedback ka sentiment batao: 'Order late pohncha, fries thandi ho gayi, drink bhi leak ho rahi thi.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-016", "prompt": "Feedback ka sentiment batao: 'Customer support se call connect hi nahi hota, ticket dinon se pending hai.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-017", "prompt": "Feedback ka sentiment batao: 'Internet speed aadhi aa rahi hai, ping high, gaming impossible.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-018", "prompt": "Feedback ka sentiment batao: 'Shirt ka color photo jaisa nahi, size bhi off, return process confusing.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-019", "prompt": "Feedback ka sentiment batao: 'Maal average laga, na bohat acha na bohat bura.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-020", "prompt": "Feedback ka sentiment batao: 'Price thori high hai, sale milay to theek rate ban jata hai.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-021", "prompt": "Feedback ka sentiment batao: 'App update aaya, interface change hua, abhi aadat dalni parhegi.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-022", "prompt": "Feedback ka sentiment batao: 'Branch pe queue lambi thi, lekin staff theek tha; kaam ho gaya.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-023", "prompt": "Feedback ka sentiment batao: 'Delivery time pe hui, packing neat, aur product bilkul jaisa description tha.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-024", "prompt": "Feedback ka sentiment batao: 'Burger ka taste zabardast tha, portion bhi generous, paisa wasool.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-025", "prompt": "Feedback ka sentiment batao: 'Customer support ne call par foran issue resolve kar diya, great experience.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-026", "prompt": "Feedback ka sentiment batao: 'App ka UI smooth hai, login se checkout tak koi lag nahi, bohat asaan.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-027", "prompt": "Feedback ka sentiment batao: 'Rider late aaya aur food thanda tha, experience kharab ho gaya.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-028", "prompt": "Feedback ka sentiment batao: 'Shoes ki quality weak nikli, teen din mein sole khul gaya, waste of money.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-029", "prompt": "Feedback ka sentiment batao: 'Website bar bar crash hoti hai, payment fail aur amount debit ho gaya.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-030", "prompt": "Feedback ka sentiment batao: 'Billing mein hidden charges add kiye, transparency zero, trust down.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-031", "prompt": "Feedback ka sentiment batao: 'Size medium order kiya tha, fit theek tha, color thora lighter nikla.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-032", "prompt": "Feedback ka sentiment batao: 'Package kal raat receive hua, abhi tak use nahi kiya, dekhte hain kaisa hai.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-033", "prompt": "Feedback ka sentiment batao: 'Branch Sunday ko closed thi, main Monday ko phir jaoonga.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-034", "prompt": "Feedback ka sentiment batao: 'Exchange policy 7 days likhi hui hai, staff ne ID mangi aur form fill karwaya.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-035", "prompt": "Feedback ka sentiment batao: 'Yeh phone camera zabardast hai, low light shots bhi clean aati hain.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-036", "prompt": "Feedback ka sentiment batao: 'Rider time pe pohanch gaya, order garam tha, experience bohat acha laga.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-037", "prompt": "Feedback ka sentiment batao: 'Bank app smooth chalti hai, funds transfer seconds mein hogaya.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-038", "prompt": "Feedback ka sentiment batao: 'Customer support ne masla foran resolve kia, thank you!'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-039", "prompt": "Feedback ka sentiment batao: 'Battery ek din bhi nahi chalti, paisay zaya hogaye.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-040", "prompt": "Feedback ka sentiment batao: 'Delivery teen din late, aur packing bhi phati hui thi.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-041", "prompt": "Feedback ka sentiment batao: 'App baar baar crash hoti hai, login hi nahi hota.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-042", "prompt": "Feedback ka sentiment batao: 'Taste bilkul bekaar tha, spice level random, stomach upset hogaya.'", "label": "negative", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-043", "prompt": "Feedback ka sentiment batao: 'Product theek lag raha hai, dekhte hain kitna chalti hai.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-044", "prompt": "Feedback ka sentiment batao: 'Price thori high hai, lekin options kam thay.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-045", "prompt": "Feedback ka sentiment batao: 'Call drop kabhi kabhi hoti hai, overall chalta hai.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-046", "prompt": "Feedback ka sentiment batao: 'Store band tha Sunday ko, kal dobara try karunga.'", "label": "neutral", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-047", "prompt": "Feedback ka sentiment batao: 'Product ki quality bohat zabardast hai, packing bhi neat thi.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-048", "prompt": "Feedback ka sentiment batao: 'Delivery time pe mil gayi, rider bara cooperative tha.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-049", "prompt": "Feedback ka sentiment batao: 'App ka UI smooth hai, bina hang ke kaam karta hai.'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
+{"id": "sent-050", "prompt": "Feedback ka sentiment batao: 'Customer support ne issue jaldi resolve kar diya, thanks!'", "label": "positive", "provenance": "gpt5_generated", "status": "candidate"}
