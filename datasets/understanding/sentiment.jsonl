@@ -1,0 +1,12 @@
+// UNDERSTANDING — sentiment of Pakistani Roman Urdu customer feedback.
+// Deterministic macro-F1. Labels: positive, negative, neutral.
+{"id": "sent-01", "prompt": "Feedback ka sentiment batao: 'Aap ki service se bohat khush hun, masla foran hal ho gaya.'", "label": "positive"}
+{"id": "sent-02", "prompt": "Feedback ka sentiment batao: 'Bilkul faltu service, mera paisa bhi barbaad hua aur waqt bhi.'", "label": "negative"}
+{"id": "sent-03", "prompt": "Feedback ka sentiment batao: 'Order mil gaya hai, packing normal thi.'", "label": "neutral"}
+{"id": "sent-04", "prompt": "Feedback ka sentiment batao: 'Delivery bhi late aur support ne bhi seedha jawab nahi diya.'", "label": "negative"}
+{"id": "sent-05", "prompt": "Feedback ka sentiment batao: 'Staff bohat cooperative tha, mashallah kaam jaldi ho gaya.'", "label": "positive"}
+{"id": "sent-06", "prompt": "Feedback ka sentiment batao: 'Meeting kal subah 10 baje reschedule ho gayi hai.'", "label": "neutral"}
+{"id": "sent-07", "prompt": "Feedback ka sentiment batao: 'Paisay kat gaye lekin transaction fail ho gayi, sakht pareshani hui.'", "label": "negative"}
+{"id": "sent-08", "prompt": "Feedback ka sentiment batao: 'Is dafa experience kaafi behtar raha, shukria.'", "label": "positive"}
+{"id": "sent-09", "prompt": "Feedback ka sentiment batao: 'Application submit kar di hai, abhi tak koi update nahi mila.'", "label": "neutral"}
+{"id": "sent-10", "prompt": "Feedback ka sentiment batao: 'Refund time pe mil gaya, bohat acha laga.'", "label": "positive"}

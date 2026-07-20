@@ -1,48 +1,50 @@
 # Roman Urdu LLM Benchmark configuration.
 # Model IDs are OpenRouter slugs. Comment/uncomment to control the matrix.
 
-# ---- Contestants: the models under test (Qwen spine + anchors) ----
+# ---- Contestants: industrial open models, small -> ~70B (Qwen + Llama) ----
 models:
-  # Qwen series, small -> large (the core request)
-  - id: qwen/qwen-2.5-7b-instruct
-    alias: qwen2.5-7b
-  - id: qwen/qwen-2.5-72b-instruct
-    alias: qwen2.5-72b
-  # Uncomment as you widen the sweep / as OpenRouter exposes them:
-  # - { id: qwen/qwen3-14b, alias: qwen3-14b }
-  # - { id: qwen/qwen3-32b, alias: qwen3-32b }
-  # - { id: meta-llama/llama-3.3-70b-instruct, alias: llama3.3-70b }
-  # - { id: google/gemma-3-27b-it, alias: gemma3-27b }
+  # Qwen ladder
+  - { id: qwen/qwen-2.5-7b-instruct, alias: qwen2.5-7b }
+  - { id: qwen/qwen3-8b,             alias: qwen3-8b }
+  - { id: qwen/qwen3-14b,            alias: qwen3-14b }
+  - { id: qwen/qwen3-32b,            alias: qwen3-32b }
+  - { id: qwen/qwen-2.5-72b-instruct, alias: qwen2.5-72b }
+  # Llama anchors
+  - { id: meta-llama/llama-3.1-8b-instruct,  alias: llama3.1-8b }
+  - { id: meta-llama/llama-3.3-70b-instruct, alias: llama3.3-70b }
 
 # ---- Judge: held OUT of the contestant pool to avoid self-preference ----
 judge:
-  id: openai/gpt-4o                # reliable JSON, strong PK-Urdu vs Hindi discrimination
+  id: openai/gpt-5                 # strong PK-Urdu vs Hindi discrimination (validated)
   temperature: 0.0
-  # gpt-5 via OpenRouter needs a larger token budget (reasoning tokens) to emit
-  # parseable JSON; gpt-4o and anthropic/claude-* work out of the box.
+  max_tokens: 1200                 # generous: gpt-5 spends tokens on reasoning
+  # Fallback that works out of the box: openai/gpt-4o
 
 # ---- Generation defaults for contestants ----
 generation:
   temperature: 0.2
   max_tokens: 512
-  # per-model concurrency handled by the runner; keep modest to respect rate limits
-  max_concurrency: 4
 
-# ---- Tasks to run ----
+# ---- Tasks: split into UNDERSTANDING (input) and OUTPUT (generation) ----
 tasks:
-  - name: sentiment           # NLU: deterministic macro-F1
+  # ---------- UNDERSTANDING ----------
+  - name: intent                 # does it understand customer intent? macro-F1
     type: classification
-    dataset: datasets/sentiment_sample.jsonl
-    metric: macro_f1
+    dataset: datasets/understanding/intent.jsonl
+    labels: [balance_inquiry, complaint, refund_request, order_status, technical_support, account_security, human_agent]
 
-  - name: generation          # NLG: judge-led + guardrails
+  - name: sentiment              # does it understand feedback tone? macro-F1
+    type: classification
+    dataset: datasets/understanding/sentiment.jsonl
+    labels: [positive, negative, neutral]
+
+  - name: translation           # deep understanding: Roman Urdu -> English
+    type: translation
+    dataset: datasets/understanding/translation_ur2en.jsonl
+
+  # ---------- OUTPUT ----------
+  - name: generation            # does it WRITE natural Pakistani Roman Urdu?
     type: generation
-    dataset: datasets/seed_generation.jsonl
-    metrics: [judge, chrf, marker_penalty, language_confusion]
-
-  # - name: transliteration   # add once you wire RUP/Dakshina
-  #   type: generation
-  #   dataset: datasets/transliteration.jsonl
-  #   metrics: [chrf, char_bleu, marker_penalty]
+    dataset: datasets/generation/support_replies.jsonl
 
 markers: datasets/markers/pakistani_markers.yaml

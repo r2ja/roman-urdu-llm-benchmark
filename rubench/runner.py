@@ -81,7 +81,7 @@ def run_generation_task(
         )
         text = resp.text if resp.ok else ""
 
-        js = judge.score(prompt, text, reference)
+        js = judge.score(prompt, text, reference, row.get("register"))
         chrf_val = M.chrf(text, reference) if reference else None
         marker_val = M.marker_penalty(text, lexicon)
         lang = M.check_language(text)
@@ -145,6 +145,56 @@ def run_classification_task(
         ))
     agg = M.macro_f1(y_true, y_pred)
     return items, agg
+
+
+def run_translation_task(
+    task: dict,
+    model_id: str,
+    model_alias: str,
+    client: OpenRouterClient,
+    judge: Judge,
+    gen_cfg: dict,
+) -> list[ItemResult]:
+    """UNDERSTANDING probe: Roman Urdu -> English. chrF(EN) + adequacy judge."""
+    rows = load_jsonl(task["dataset"])
+    out: list[ItemResult] = []
+    for row in rows:
+        prompt = row["prompt"]
+        reference = row.get("reference")
+        resp = client.complete(
+            model_id, prompt, system=row.get("system"),
+            temperature=gen_cfg.get("temperature", 0.2),
+            max_tokens=gen_cfg.get("max_tokens", 256),
+        )
+        text = resp.text if resp.ok else ""
+        # English output: spelling-normalization OFF (that normalizer is for Roman Urdu).
+        chrf_en = M.chrf(text, reference, normalize_spelling=False) if reference else None
+        ts = judge.score_translation(prompt, text, reference)
+        # blend: adequacy (judge, primary) + chrF fidelity
+        blended = 0.7 * (ts.overall / 2.0) + 0.3 * ((chrf_en or 0.0) / 100.0)
+        out.append(ItemResult(
+            id=str(row.get("id", len(out))), prompt=prompt, response=text,
+            scores={
+                "final": round(blended, 4),
+                "judge_adequacy": ts.adequacy,
+                "judge_fluency": ts.fluency,
+                "judge_overall": ts.overall,
+                "chrf_en": round(chrf_en, 2) if chrf_en is not None else None,
+            },
+            meta={"model": model_alias, "judge_reason": ts.reason, "error": resp.error},
+        ))
+    return out
+
+
+def aggregate_translation(items: list[ItemResult]) -> dict:
+    if not items:
+        return {}
+    agg = {}
+    for k in ["final", "judge_overall", "chrf_en"]:
+        vals = [it.scores.get(k) for it in items if it.scores.get(k) is not None]
+        agg[k] = round(sum(vals) / len(vals), 4) if vals else None
+    agg["n_items"] = len(items)
+    return agg
 
 
 @dataclass

@@ -1,0 +1,16 @@
+// UNDERSTANDING — intent classification of Pakistani Roman Urdu customer messages.
+// Deterministic macro-F1. Labels: balance_inquiry, complaint, refund_request,
+// order_status, technical_support, account_security, human_agent.
+// Tests: does the model UNDERSTAND real customer Roman Urdu? Verify/expand these.
+{"id": "int-01", "prompt": "Customer ka message: 'Mera mobile balance kitna reh gaya hai?'", "label": "balance_inquiry"}
+{"id": "int-02", "prompt": "Customer ka message: 'Teen din se internet nahi chal raha, service bilkul bekaar hai.'", "label": "complaint"}
+{"id": "int-03", "prompt": "Customer ka message: 'Mujhe apna order cancel kar ke paisay wapas chahiye.'", "label": "refund_request"}
+{"id": "int-04", "prompt": "Customer ka message: 'Mera parcel abhi tak deliver nahi hua, kahan pohancha?'", "label": "order_status"}
+{"id": "int-05", "prompt": "Customer ka message: 'App bar bar crash ho rahi hai, login hi nahi ho raha.'", "label": "technical_support"}
+{"id": "int-06", "prompt": "Customer ka message: 'Mere account mein koi aur login kar raha hai, foran block karein!'", "label": "account_security"}
+{"id": "int-07", "prompt": "Customer ka message: 'Ye bot kaam ka nahi, mujhe kisi asli banday se baat karni hai.'", "label": "human_agent"}
+{"id": "int-08", "prompt": "Customer ka message: 'Is mahine bill bohat zyada aaya hai, ye galti kaise hui?'", "label": "complaint"}
+{"id": "int-09", "prompt": "Customer ka message: 'Meri last recharge ke baad se points show nahi ho rahe, balance check kar dein.'", "label": "balance_inquiry"}
+{"id": "int-10", "prompt": "Customer ka message: 'Payment ho gayi lekin order confirm nahi hua, refund chahiye.'", "label": "refund_request"}
+{"id": "int-11", "prompt": "Customer ka message: 'OTP nahi aa raha message par, kaise verify karun?'", "label": "technical_support"}
+{"id": "int-12", "prompt": "Customer ka message: 'Mujhe shak hai kisi ne mera card use kiya hai, transactions rok dein.'", "label": "account_security"}

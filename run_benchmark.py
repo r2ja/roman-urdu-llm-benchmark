@@ -93,7 +93,9 @@ def run(config_path: str, only_task: str | None, only_models: list[str] | None) 
     cfg = yaml.safe_load(Path(config_path).read_text(encoding="utf-8"))
     lex = MarkerLexicon.load(ROOT / cfg["markers"])
     client = OpenRouterClient()
-    judge = Judge(client, cfg["judge"]["id"], temperature=cfg["judge"].get("temperature", 0.0))
+    judge = Judge(client, cfg["judge"]["id"],
+                  temperature=cfg["judge"].get("temperature", 0.0),
+                  max_tokens=cfg["judge"].get("max_tokens", 900))
     gen_cfg = cfg.get("generation", {})
 
     models = cfg["models"]
@@ -114,6 +116,9 @@ def run(config_path: str, only_task: str | None, only_models: list[str] | None) 
             print(f"→ task={task['name']} model={alias}")
             if task["type"] == "classification":
                 items, agg = R.run_classification_task(task, mid, alias, client, gen_cfg)
+            elif task["type"] == "translation":
+                items = R.run_translation_task(task, mid, alias, client, judge, gen_cfg)
+                agg = R.aggregate_translation(items)
             else:
                 items = R.run_generation_task(task, mid, alias, client, judge, lex, gen_cfg)
                 agg = R.aggregate_generation(items)
@@ -130,9 +135,59 @@ def run(config_path: str, only_task: str | None, only_models: list[str] | None) 
     return 0
 
 
+# --------------------------------------------------------------------------- #
+# Judge validation: prove the judge ranks clean-PK > Hindi > English > shudh.
+# --------------------------------------------------------------------------- #
+JUDGE_GOLD = [
+    ("clean_pk",   "Aap ki complaint register kar li gayi hai, 48 ghantay mein amount aap ke account mein wapas aa jayegi.", "should score HIGH"),
+    ("hindi_roman","Aapka dhanyavad, aapki samasya ka samadhan jald kiya jayega.",                                          "should score LOW (Roman Hindi)"),
+    ("hindi_deva", "आपकी शिकायत दर्ज कर ली गई है, धन्यवाद।",                                                                 "should score LOW (Hindi script)"),
+    ("english",    "Your complaint has been registered, the amount will be refunded within 48 hours.",                       "should score LOW (English)"),
+    ("shudh",      "Aap ki ma'roozat sharaf-e-qubooliyat hasil kar chuki hai, ba-taakheer daad-rasi ki jayegi.",            "should score MID/LOW (shudh)"),
+]
+JUDGE_PROMPT = "Customer ki complaint: 'ATM se paisay kat gaye lekin cash nahi nikla.' Ek professional Pakistani Roman Urdu reply likho."
+
+
+def validate_judge(config_path: str) -> int:
+    from rubench.providers import OpenRouterClient
+    from rubench.judge import Judge
+    cfg = yaml.safe_load(Path(config_path).read_text(encoding="utf-8"))
+    client = OpenRouterClient()
+    judge = Judge(client, cfg["judge"]["id"],
+                  temperature=cfg["judge"].get("temperature", 0.0),
+                  max_tokens=cfg["judge"].get("max_tokens", 900))
+    print(f"== Judge validation ({cfg['judge']['id']}) ==\n")
+    scores = {}
+    for key, resp, expect in JUDGE_GOLD:
+        s = judge.score(JUDGE_PROMPT, resp, register="professional customer support")
+        scores[key] = s
+        print(f"[{key:12}] overall={s.overall}  register={s.pakistani_register}  "
+              f"hindi={s.hindi_words}  ({expect})")
+        print(f"               reason: {s.reason[:90]}")
+
+    ok = True
+    all_parsed = all(s.parse_ok for s in scores.values())
+    checks = [
+        ("all gold cases parsed (no unparseable)", all_parsed),
+        ("clean > hindi_roman (overall)", scores['clean_pk'].overall > scores['hindi_roman'].overall),
+        ("clean > hindi_deva (overall)",  scores['clean_pk'].overall > scores['hindi_deva'].overall),
+        ("clean > english (register)",    scores['clean_pk'].pakistani_register > scores['english'].pakistani_register),
+        ("clean >= shudh (register)",     scores['clean_pk'].pakistani_register >= scores['shudh'].pakistani_register),
+        ("clean register is high (>=1.5)", scores['clean_pk'].pakistani_register >= 1.5),
+        ("hindi register is low (<=1)",   scores['hindi_roman'].pakistani_register <= 1),
+    ]
+    print()
+    for name, passed in checks:
+        print(f"  {'PASS' if passed else 'FAIL'}  {name}")
+        ok &= passed
+    print("\n== JUDGE VALIDATION", "PASSED ==" if ok else "FAILED ==")
+    return 0 if ok else 1
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Roman Urdu LLM Benchmark")
     ap.add_argument("--selftest", action="store_true", help="offline metric checks, no API calls")
+    ap.add_argument("--validate-judge", action="store_true", help="prove the judge ranks PK>Hindi>English>shudh")
     ap.add_argument("--config", default="config.yaml")
     ap.add_argument("--task", default=None, help="run only this task name")
     ap.add_argument("--models", default=None, help="comma-separated model aliases to run")
@@ -140,6 +195,8 @@ def main() -> int:
 
     if args.selftest:
         return selftest()
+    if args.validate_judge:
+        return validate_judge(args.config)
     models = args.models.split(",") if args.models else None
     return run(args.config, args.task, models)
 

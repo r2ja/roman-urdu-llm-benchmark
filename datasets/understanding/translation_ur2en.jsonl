@@ -1,0 +1,14 @@
+// UNDERSTANDING (deep) — Roman Urdu -> English translation.
+// To translate correctly the model must actually COMPREHEND the input.
+// Scored: chrF vs English gold (spelling-normalization OFF) + adequacy judge (0-2).
+// reference = faithful English gold.
+{"id": "tr-01", "prompt": "Translate to English: 'Mera ATM card block ho gaya hai, dobara kaise chalu karun?'", "reference": "My ATM card has been blocked, how do I reactivate it?"}
+{"id": "tr-02", "prompt": "Translate to English: 'Aap ke customer support ne meri bilkul koi madad nahi ki.'", "reference": "Your customer support did not help me at all."}
+{"id": "tr-03", "prompt": "Translate to English: 'Main ne kal payment ki thi lekin abhi tak confirm nahi hui.'", "reference": "I made the payment yesterday but it has not been confirmed yet."}
+{"id": "tr-04", "prompt": "Translate to English: 'Kya is package mein free minutes aur internet dono shamil hain?'", "reference": "Does this package include both free minutes and internet?"}
+{"id": "tr-05", "prompt": "Translate to English: 'Meri booking cancel kar dein aur poore paisay wapas kar dein.'", "reference": "Cancel my booking and refund the full amount."}
+{"id": "tr-06", "prompt": "Translate to English: 'Bill mein extra charges laga diye gaye hain jo maine kabhi use nahi kiye.'", "reference": "Extra charges have been added to the bill that I never used."}
+{"id": "tr-07", "prompt": "Translate to English: 'Delivery walay ne kaha tha aaj aayega lekin abhi tak nahi pohancha.'", "reference": "The delivery person said it would come today but it has not arrived yet."}
+{"id": "tr-08", "prompt": "Translate to English: 'Meri complaint ka abhi tak koi jawab nahi aaya, please jaldi karein.'", "reference": "There has been no response to my complaint yet, please hurry."}
+{"id": "tr-09", "prompt": "Translate to English: 'Naya connection lene ke liye kaun kaun se documents chahiye?'", "reference": "What documents are required to get a new connection?"}
+{"id": "tr-10", "prompt": "Translate to English: 'Agar aaj masla hal na hua to main apna account band kar dunga.'", "reference": "If the issue is not resolved today, I will close my account."}
