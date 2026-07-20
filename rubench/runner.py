@@ -9,6 +9,7 @@ Classification tasks are scored deterministically (macro-F1).
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Optional
@@ -124,27 +125,51 @@ def run_classification_task(
     gen_cfg: dict,
 ) -> tuple[list[ItemResult], dict]:
     rows = load_jsonl(task["dataset"])
-    labels = task.get("labels")
+    labels = task.get("labels") or []
     y_true, y_pred, items = [], [], []
     for row in rows:
         prompt = row["prompt"]
         instr = (
-            f"{prompt}\n\nJawab sirf in mein se aik lafz mein dein"
-            f"{(' (' + ', '.join(labels) + ')') if labels else ''}:"
+            f"{prompt}\n\nIn labels mein se sahi label chuno aur SIRF wahi label "
+            f"aakhir mein likho: {', '.join(labels)}" if labels else prompt
         )
+        # Budget must be large enough for 'thinking' models (Qwen3 etc.) to finish
+        # reasoning before emitting the label; we then extract the label robustly.
         resp = client.complete(
-            model_id, instr,
-            temperature=0.0, max_tokens=16,
+            model_id, instr, temperature=0.0,
+            max_tokens=gen_cfg.get("classification_max_tokens", 1500),
+            reasoning={"effort": "low"},
         )
-        pred = (resp.text or "").strip().split()[0].lower() if resp.ok and resp.text else ""
+        pred = _extract_label(resp.text if resp.ok else "", labels)
         y_true.append(str(row["label"]).lower())
         y_pred.append(pred)
         items.append(ItemResult(
             id=str(row.get("id", len(items))), prompt=prompt, response=pred,
-            scores={}, meta={"gold": row["label"], "model": model_alias, "error": resp.error},
+            scores={}, meta={"gold": row["label"], "model": model_alias,
+                             "raw": (resp.text or "")[:200], "error": resp.error},
         ))
     agg = M.macro_f1(y_true, y_pred)
     return items, agg
+
+
+def _extract_label(text: str, labels: list[str]) -> str:
+    """Robustly pull a label from a model reply that may include reasoning/preamble.
+
+    Strategy: among the known labels, return the one whose LAST occurrence in the
+    text is latest (thinking models put the final answer at the end). Matches both
+    'account_security' and 'account security'. Falls back to the last alnum token.
+    """
+    t = (text or "").lower()
+    best, best_pos = "", -1
+    for lab in labels:
+        low = lab.lower()
+        pos = max(t.rfind(low), t.rfind(low.replace("_", " ")))
+        if pos > best_pos:
+            best, best_pos = low, pos
+    if best_pos >= 0:
+        return best
+    toks = re.findall(r"[a-z_]+", t)
+    return toks[-1] if toks else ""
 
 
 def run_translation_task(
