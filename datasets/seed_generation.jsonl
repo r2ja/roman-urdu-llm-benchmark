@@ -1,0 +1,13 @@
+// Native Pakistani Roman Urdu GENERATION seed set. YOU author this.
+// One JSON object per line. Fields:
+//   id        : unique string/int
+//   prompt    : the instruction/question given to the model (in Roman Urdu or English)
+//   reference : (optional) a native Pakistani Roman Urdu gold answer for chrF + judge anchoring
+//   system    : (optional) a system prompt to force Roman Urdu output
+//   tags      : (optional) list, e.g. ["colloquial","translation","qa"]
+// Lines starting with // are ignored. Replace these 5 examples with your real set.
+{"id": "gen-001", "prompt": "Apne dost ko WhatsApp par shukria kaho ke us ne kal madad ki.", "reference": "Yaar bohat bohat shukria, kal jo tune meri madad ki us ka ehsan kabhi nahi bhoolunga.", "system": "Sirf everyday Pakistani Roman Urdu mein jawab do. Hindi ya literary Urdu use mat karo.", "tags": ["colloquial", "generation"]}
+{"id": "gen-002", "prompt": "Translate to everyday Pakistani Roman Urdu: 'I will reach the office in ten minutes.'", "reference": "Main das minute mein office pohanch jaunga.", "system": "Reply only in Pakistani Roman Urdu.", "tags": ["translation"]}
+{"id": "gen-003", "prompt": "Kisi ko halka sa mazaak karte hue chai pe bulao.", "reference": "Oye sunn, chai peene aa ja, tere bina to chai bhi pheeki lagti hai.", "tags": ["colloquial", "humor"]}
+{"id": "gen-004", "prompt": "Ek chhoti si dua likho jab koi safar par ja raha ho.", "reference": "Allah tumhein khair se le jaye aur khair se wapas laye, safar asaan ho. Ameen.", "tags": ["religious-register"]}
+{"id": "gen-005", "prompt": "Explain in simple Pakistani Roman Urdu why the sky looks blue.", "reference": "Aasman neela is liye lagta hai kyunke suraj ki roshni jab hawa se guzarti hai to neeli roshni sab se zyada bikhar jaati hai, is liye humein aasman neela dikhta hai.", "tags": ["explanation", "qa"]}

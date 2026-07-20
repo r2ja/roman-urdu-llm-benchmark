@@ -1,0 +1,67 @@
+# Pakistani Roman Urdu vs Roman Hindi marker lexicon.
+#
+# This is the NATIVE-SPEAKER moat. No published gold lexicon exists for this
+# distinction, so expand it from your own knowledge and corpus. Lowercase; the
+# loader normalizes spelling. Keep entries that genuinely separate the varieties
+# — generic shared Hindustani words (paani, ghar, dil) do NOT belong here.
+#
+# Seeded with common, high-signal markers. GROW THIS.
+
+# Words that signal everyday PAKISTANI Urdu (GOOD register).
+urdu_markers:
+  - shukria           # thanks (NOT dhanyavad)
+  - khuda hafiz
+  - allah hafiz
+  - salaam
+  - assalam o alaikum
+  - inshallah
+  - mashallah
+  - bilkul
+  - theek
+  - theek hai
+  - acha
+  - bhai
+  - yaar
+  - filhaal
+  - mehrbani
+  - guzarish
+  - daiss            # nation/state (PK spelling; Hindi tends to 'desh')
+  - sarkar
+
+# Words that signal ROMAN HINDI (BAD — penalize; the model drifted to Hindi).
+hindi_markers:
+  - dhanyavad         # thanks (Hindi)
+  - namaste
+  - namaskar
+  - kripya            # please (Hindi) vs Urdu 'meharbani/bara-e-karam'
+  - dhanyawad
+  - swagat            # welcome (Hindi)
+  - desh              # country (Hindi) vs PK 'mulk/daiss'
+  - shubh             # auspicious (Hindi)
+  - prabhu
+  - ishwar            # god (Hindi) vs Urdu 'khuda/Allah'
+  - vidyalaya
+  - samay             # time (Hindi) vs Urdu 'waqt'
+  - prashn            # question (Hindi) vs Urdu 'sawal'
+  - uttar             # answer (Hindi) vs Urdu 'jawab'
+  - dhanyvaad
+
+# Overly literary / "shudh" Urdu (MILD penalty when casual register expected).
+# Fill with bookish words that no one uses in everyday WhatsApp Urdu.
+shudh_markers:
+  - lehaza
+  - baharkaif
+  - alghaus
+  - fil'waqt
+  - bandah'parwar
+
+# Informational: canonical PK form -> Hindi/other forms to avoid.
+# Used for docs/inspection; not required for scoring.
+prefer:
+  shukria: [dhanyavad, dhanyawad]
+  mulk: [desh]
+  khuda: [ishwar, bhagwan]
+  waqt: [samay]
+  sawal: [prashn]
+  jawab: [uttar]
+  meharbani: [kripya]
